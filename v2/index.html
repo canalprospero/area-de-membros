@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Formação Canal Próspero · Área de membros</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;700&display=swap">
+<style>
+:root{
+  --preto:#0B0706;--carvao:#140D0A;--marrom:#3B1D13;--vinho:#7A0E12;--rubi:#A3161C;--bronze:#D4A373;--creme:#F5EEE9;--cinza:#A8988F;--linha:rgba(212,163,115,.18);
+  --display:"Cinzel",Georgia,"Times New Roman",serif;--corpo:"Manrope","Helvetica Neue",Arial,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--preto);color:var(--creme);font-family:var(--corpo);font-size:15px;line-height:1.5;min-height:100vh}
+a{color:inherit;text-decoration:none}
+button{font:700 14px var(--corpo);border-radius:999px;padding:12px 22px;cursor:pointer;border:1px solid rgba(212,163,115,.5);background:transparent;color:var(--bronze)}
+button.forte{background:linear-gradient(90deg,var(--vinho),var(--rubi));border-color:var(--rubi);color:var(--creme)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--bronze);outline-offset:3px}
+[hidden]{display:none!important}
+
+/* topo */
+.topo{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(16px,4vw,48px);background:linear-gradient(180deg,rgba(11,7,6,.96),rgba(11,7,6,.7));border-bottom:1px solid var(--linha)}
+.marca{font-family:var(--display);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:13px;color:var(--bronze)}
+.nav{display:flex;gap:18px;align-items:center;font-size:14px;color:var(--cinza)}
+.nav a[aria-current]{color:var(--creme)}
+
+/* destaque */
+.destaque{position:relative;min-height:min(62vh,520px);display:flex;align-items:flex-end;padding:clamp(24px,5vw,64px) clamp(16px,4vw,48px);background:radial-gradient(circle at 78% 22%,rgba(163,22,28,.55),transparent 42%),radial-gradient(circle at 15% 90%,rgba(212,163,115,.12),transparent 40%),linear-gradient(180deg,#1a0b08,var(--preto))}
+.destaque .txt{max-width:640px;display:grid;gap:14px}
+.destaque .etiq{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--bronze)}
+.destaque h1{font-family:var(--display);font-weight:600;font-size:clamp(30px,5.4vw,56px);line-height:1.08;margin:0;text-wrap:balance}
+.destaque p{margin:0;color:var(--cinza);max-width:56ch}
+.destaque .acoes{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+
+/* fileiras */
+.fileiras{padding:8px 0 56px;display:grid;gap:34px}
+.fileira h2{font-family:var(--display);font-weight:600;font-size:clamp(18px,2.6vw,22px);margin:0 clamp(16px,4vw,48px) 12px}
+.trilho{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px clamp(16px,4vw,48px) 14px;scrollbar-width:thin;scrollbar-color:var(--marrom) transparent}
+.cartao{flex:0 0 auto;width:clamp(200px,28vw,250px);scroll-snap-align:start;display:grid;gap:10px;padding:0;border-radius:14px;overflow:hidden;border:1px solid var(--linha);background:linear-gradient(180deg,rgba(59,29,19,.55),rgba(20,13,10,.95));transition:transform .25s ease,border-color .25s ease}
+.cartao:hover{transform:translateY(-4px);border-color:rgba(212,163,115,.5)}
+.capa{position:relative;aspect-ratio:9/12;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,rgba(163,22,28,.5),transparent 62%),#0E0907;overflow:hidden}
+.capa .num{font-family:var(--display);font-size:clamp(70px,11vw,96px);line-height:1;color:var(--bronze);text-shadow:0 0 28px rgba(163,22,28,.65)}
+.capa .selo{position:absolute;top:10px;left:10px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:rgba(0,0,0,.55);border:1px solid var(--linha);border-radius:99px;padding:3px 9px;color:var(--bronze)}
+.capa .selo.feito{background:var(--rubi);border-color:var(--rubi);color:var(--creme)}
+.info{padding:0 14px 14px;display:grid;gap:8px}
+.info b{font-family:var(--display);font-weight:600;font-size:16px;line-height:1.25}
+.info small{color:var(--cinza);font-size:12px}
+.mini{height:5px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.mini i{display:block;height:100%;background:linear-gradient(90deg,var(--vinho),var(--rubi) 70%,var(--bronze))}
+.cartao.breve{opacity:.5;pointer-events:none}
+
+/* tela do módulo */
+.modulo{max-width:980px;margin:0 auto;padding:clamp(24px,4vw,44px) clamp(16px,4vw,40px) 72px;display:grid;gap:26px}
+.voltar{justify-self:start;font-size:14px;color:var(--cinza)}
+.cab{display:grid;gap:10px}
+.cab .etiq{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--bronze)}
+.cab h1{font-family:var(--display);font-weight:600;font-size:clamp(28px,4.8vw,44px);line-height:1.1;margin:0;text-wrap:balance}
+.cab p{margin:0;color:var(--cinza);max-width:60ch}
+.prog{display:grid;gap:10px;padding:16px 18px;border:1px solid var(--linha);border-radius:14px;background:rgba(20,13,10,.8)}
+.prog .linha{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.prog .pct{font-family:var(--display);font-size:28px;font-variant-numeric:tabular-nums}
+.barra{height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--vinho),var(--rubi) 70%,var(--bronze));transition:width .4s ease}
+.aulas{display:grid;gap:18px}
+.aula{display:grid;gap:12px;padding:16px;border-radius:16px;border:1px solid var(--linha);background:rgba(20,13,10,.6)}
+.aula .topo3{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.aula h3{margin:0;font-family:var(--display);font-weight:600;font-size:18px}
+.aula .meta{font-size:12px;color:var(--cinza)}
+.video{position:relative;aspect-ratio:16/9;width:100%;border-radius:12px;overflow:hidden;background:#000;border:1px solid rgba(212,163,115,.22)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.aula.feita{border-color:rgba(163,22,28,.6)}
+footer{color:var(--cinza);font-size:12px;border-top:1px solid var(--linha);padding:16px clamp(16px,4vw,48px)}
+@media (max-width:560px){.nav a:not(:first-child){display:none}}
+@media (prefers-reduced-motion:reduce){.cartao{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <a class="marca" href="#">Formação Canal Próspero</a>
+  <nav class="nav"><a href="#" id="nav-inicio" aria-current="page">Início</a><a href="#" id="nav-atual" hidden>Módulo</a></nav>
+</header>
+
+<main id="inicio">
+  <section class="destaque" aria-label="Destaque">
+    <div class="txt">
+      <span class="etiq">Comece por aqui</span>
+      <h1>Do zero ao seu primeiro vídeo com IA</h1>
+      <p>Assista às aulas na ordem e veja o seu progresso avançar a cada aula concluída.</p>
+      <div class="acoes"><button class="forte" type="button" id="btn-comecar">Começar o módulo 00</button></div>
+    </div>
+  </section>
+
+  <div class="fileiras" id="fileiras"></div>
+  <footer>Formação Canal Próspero · Área de membros</footer>
+</main>
+
+<main class="modulo" id="modulo" hidden></main>
+
+<script>
+(function(){
+  var MODULOS=[
+    {id:'comece-aqui',n:'00',t:'Comece aqui',d:'Assista primeiro a estas aulas para entender como funciona a Formação Canal Próspero e como acessar os conteúdos.',aulas:[
+      {t:'Aula 1',dur:'2:41',yt:'tPmXBgIUpPc'},{t:'Aula 2',dur:'1:50',yt:'P6pBPnu7bnc'},{t:'Aula 3',dur:'1:05',yt:'I5gzY7ed7Lk'},
+      {t:'Aula 4',dur:'0:42',yt:'FTDanEgyt_g'},{t:'Aula 5',dur:'1:14',yt:'V4wLWm1FH8g'},{t:'Aula 6',dur:'1:01',yt:'T7Lr9Pa5IJw'}]},
+    {id:'m1',n:'01',t:'Como criar o seu canal do zero',d:'',aulas:[]},
+    {id:'m2',n:'02',t:'Como funciona o YouTube',d:'',aulas:[]},
+    {id:'m3',n:'03',t:'IA como o seu assistente',d:'',aulas:[]},
+    {id:'m4',n:'04',t:'Imagens bíblicas com IA',d:'',aulas:[]},
+    {id:'m5',n:'05',t:'Vídeos bíblicos com IA',d:'',aulas:[]},
+    {id:'m6',n:'06',t:'Narração e personagens',d:'',aulas:[]},
+    {id:'m7',n:'07',t:'Edição no CapCut',d:'',aulas:[]},
+    {id:'m8',n:'08',t:'Publicando seus vídeos',d:'',aulas:[]}
+  ];
+  var inicio=document.getElementById('inicio'),modulo=document.getElementById('modulo'),navAtual=document.getElementById('nav-atual'),navInicio=document.getElementById('nav-inicio');
+  function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function lerProg(id){try{return JSON.parse(localStorage.getItem('v2_prog_'+id))||{};}catch(e){return {};}}
+  function salvarProg(id,p){try{localStorage.setItem('v2_prog_'+id,JSON.stringify(p));}catch(e){}}
+  function pctDe(m){var p=lerProg(m.id),n=0;m.aulas.forEach(function(a,i){if(p[i])n++;});return m.aulas.length?Math.round(n/m.aulas.length*100):0;}
+
+  function fileiras(){
+    var com=MODULOS.filter(function(m){return m.aulas.length;}),breve=MODULOS.filter(function(m){return !m.aulas.length;});
+    var h='<section class="fileira"><h2>Módulos disponíveis</h2><div class="trilho">'+com.map(function(m){
+      var p=pctDe(m);return '<a class="cartao" href="#'+m.id+'"><div class="capa"><span class="selo'+(p===100?' feito':'')+'">'+(p===100?'Concluído':'Módulo '+m.n)+'</span><span class="num">'+m.n+'</span></div><div class="info"><b>'+esc(m.t)+'</b><small>'+m.aulas.length+' aulas</small><div class="mini"><i style="width:'+p+'%"></i></div></div></a>';
+    }).join('')+'</div></section>';
+    h+='<section class="fileira"><h2>Em breve</h2><div class="trilho">'+breve.map(function(m){
+      return '<div class="cartao breve"><div class="capa"><span class="selo">Em breve</span><span class="num">'+m.n+'</span></div><div class="info"><b>'+esc(m.t)+'</b><small>Módulo '+m.n+'</small></div></div>';
+    }).join('')+'</div></section>';
+    document.getElementById('fileiras').innerHTML=h;
+  }
+
+  function abrir(id){
+    var m=MODULOS.filter(function(x){return x.id===id;})[0];
+    if(!m||!m.aulas.length){mostrarInicio();return;}
+    inicio.hidden=true;modulo.hidden=false;navAtual.hidden=false;navAtual.textContent='Módulo '+m.n;navInicio.removeAttribute('aria-current');navAtual.setAttribute('aria-current','page');
+    var prog=lerProg(m.id),p=pctDe(m);
+    modulo.innerHTML='<a class="voltar" href="#">← Todos os módulos</a>'+
+      '<header class="cab"><span class="etiq">Módulo '+esc(m.n)+'</span><h1>'+esc(m.t)+'</h1><p>'+esc(m.d)+'</p></header>'+
+      '<div class="prog"><div class="linha"><span class="etiq" style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--bronze)">Seu progresso</span><span class="pct">'+p+'%</span></div><div class="barra"><i style="width:'+p+'%"></i></div></div>'+
+      '<div class="aulas">'+m.aulas.map(function(a,i){var f=!!prog[i];return '<article class="aula'+(f?' feita':'')+'"><div class="topo3"><h3>'+esc(a.t)+'</h3><span class="meta">'+esc(a.dur)+'</span></div><div class="video"><iframe src="https://www.youtube.com/embed/'+esc(a.yt)+'?rel=0&modestbranding=1" title="'+esc(a.t)+'" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div><button type="button" class="'+(f?'forte':'')+'" data-i="'+i+'">'+(f?'✓ Aula concluída':'Marcar como concluída')+'</button></div></article>';}).join('')+'</div>';
+    window.scrollTo(0,0);
+  }
+  function mostrarInicio(){inicio.hidden=false;modulo.hidden=true;navAtual.hidden=true;navInicio.setAttribute('aria-current','page');fileiras();}
+
+  modulo.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-i]');if(!b)return;
+    var id=location.hash.slice(1),prog=lerProg(id),i=+b.getAttribute('data-i');
+    if(prog[i])delete prog[i];else prog[i]=1;
+    salvarProg(id,prog);abrir(id);
+  });
+  document.getElementById('btn-comecar').addEventListener('click',function(){location.hash='comece-aqui';});
+  window.addEventListener('hashchange',function(){var id=location.hash.slice(1);if(!id||id==='#'){mostrarInicio();}else{abrir(id);}});
+  var id0=location.hash.slice(1);if(id0){abrir(id0);}else{mostrarInicio();}
+})();
+</script>
+</body>
+</html>
