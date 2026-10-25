@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Formação Canal Próspero · Área de membros</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;700&display=swap">
+<style>
+:root{
+  --preto:#0B0706;--marrom:#3B1D13;--vinho:#7A0E12;--rubi:#A3161C;--bronze:#D4A373;--creme:#F5EEE9;--cinza:#A8988F;--linha:rgba(212,163,115,.2);
+  --display:"Cinzel",Georgia,"Times New Roman",serif;--corpo:"Manrope","Helvetica Neue",Arial,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 85% 0%,rgba(122,14,18,.38),transparent 34rem),var(--preto);color:var(--creme);font-family:var(--corpo);font-size:15px;line-height:1.55;min-height:100vh}
+a{color:inherit}
+.topo{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:16px clamp(16px,4vw,40px);border-bottom:1px solid var(--linha)}
+.marca{font-family:var(--display);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:13px;color:var(--bronze);text-decoration:none}
+.corpo{max-width:1100px;margin:0 auto;padding:clamp(24px,4vw,44px) clamp(16px,4vw,40px) 64px;display:grid;gap:26px}
+.sobre{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--bronze)}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(28px,5vw,40px);line-height:1.12;margin:6px 0 0}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(22px,3.4vw,28px);margin:0}
+.lead{color:var(--cinza);margin:0;max-width:62ch}
+.modulos{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.modulo{display:grid;gap:8px;padding:18px;border:1px solid var(--linha);border-radius:16px;background:linear-gradient(180deg,rgba(59,29,19,.4),rgba(20,13,10,.9));text-decoration:none;transition:border-color .2s ease}
+.modulo:hover{border-color:rgba(212,163,115,.5)}
+.modulo .n{font-family:var(--display);font-size:40px;color:var(--bronze);line-height:1}
+.modulo .t{font-family:var(--display);font-size:18px;line-height:1.2}
+.modulo .m{font-size:12px;color:var(--cinza)}
+.modulo.breve{opacity:.55}
+.barra{height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--vinho),var(--rubi) 70%,var(--bronze));transition:width .4s ease}
+.progresso{border:1px solid var(--linha);border-radius:14px;padding:16px 18px;background:rgba(20,13,10,.8);display:grid;gap:10px}
+.progresso .topo2{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.pct{font-family:var(--display);font-size:28px;font-variant-numeric:tabular-nums}
+.aulas{display:grid;gap:18px}
+.aula{display:grid;gap:12px;padding:18px;border:1px solid var(--linha);border-radius:16px;background:rgba(20,13,10,.6)}
+.aula h3{margin:0;font-family:var(--display);font-weight:600;font-size:19px}
+.aula .meta{font-size:13px;color:var(--cinza)}
+.video{position:relative;aspect-ratio:16/9;width:100%;border-radius:12px;overflow:hidden;background:#000;border:1px solid rgba(212,163,115,.25)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+button{font:700 14px var(--corpo);border-radius:999px;padding:11px 20px;cursor:pointer;border:1px solid rgba(212,163,115,.5);background:transparent;color:var(--bronze);justify-self:start}
+button.feito{background:linear-gradient(90deg,var(--vinho),var(--rubi));border-color:var(--rubi);color:var(--creme)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--bronze);outline-offset:2px}
+.voltar{font-size:14px;color:var(--cinza);text-decoration:none}
+[hidden]{display:none!important}
+footer{color:var(--cinza);font-size:12px;border-top:1px solid var(--linha);padding-top:16px}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <a class="marca" href="#">Formação Canal Próspero</a>
+  <a class="voltar" href="#" id="voltar" hidden>← Todos os módulos</a>
+</header>
+
+<main class="corpo">
+
+  <section id="home">
+    <span class="sobre">Área de membros</span>
+    <h1>Seus módulos</h1>
+    <p class="lead">Escolha um módulo para começar. Cada aula mostra o seu progresso, até chegar a 100%.</p>
+    <div class="modulos" id="lista-modulos"></div>
+  </section>
+
+  <section id="modulo" hidden>
+    <span class="sobre" id="mod-numero"></span>
+    <h1 id="mod-titulo"></h1>
+    <p class="lead" id="mod-descricao"></p>
+    <div class="progresso">
+      <div class="topo2"><span class="sobre">Seu progresso no módulo</span><span class="pct" id="mod-pct">0%</span></div>
+      <div class="barra"><i id="mod-barra"></i></div>
+    </div>
+    <div class="aulas" id="mod-aulas"></div>
+  </section>
+
+  <footer>Formação Canal Próspero · Área de membros</footer>
+</main>
+
+<script>
+(function(){
+  /* Módulos. Por enquanto, só o Comece Aqui tem aulas nesta versão. */
+  var MODULOS=[
+    {id:'comece-aqui',n:'00',t:'Comece aqui',d:'Assista primeiro a estas aulas para entender como funciona a Formação Canal Próspero e como acessar os conteúdos.',aulas:[
+      {t:'Aula 1',dur:'2:41',yt:'tPmXBgIUpPc'},{t:'Aula 2',dur:'1:50',yt:'P6pBPnu7bnc'},{t:'Aula 3',dur:'1:05',yt:'I5gzY7ed7Lk'},
+      {t:'Aula 4',dur:'0:42',yt:'FTDanEgyt_g'},{t:'Aula 5',dur:'1:14',yt:'V4wLWm1FH8g'},{t:'Aula 6',dur:'1:01',yt:'T7Lr9Pa5IJw'}]},
+    {id:'m1',n:'01',t:'Como criar o seu canal do zero',d:'',breve:true,aulas:[]},
+    {id:'m2',n:'02',t:'Como funciona o YouTube',d:'',breve:true,aulas:[]},
+    {id:'m3',n:'03',t:'IA como o seu assistente',d:'',breve:true,aulas:[]},
+    {id:'m4',n:'04',t:'Imagens bíblicas com IA',d:'',breve:true,aulas:[]},
+    {id:'m5',n:'05',t:'Vídeos bíblicos com IA',d:'',breve:true,aulas:[]},
+    {id:'m6',n:'06',t:'Narração e personagens',d:'',breve:true,aulas:[]},
+    {id:'m7',n:'07',t:'Edição no CapCut',d:'',breve:true,aulas:[]},
+    {id:'m8',n:'08',t:'Publicando seus vídeos',d:'',breve:true,aulas:[]}
+  ];
+  var lista=document.getElementById('lista-modulos'),home=document.getElementById('home'),mod=document.getElementById('modulo'),voltar=document.getElementById('voltar');
+  function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function lerProg(id){try{return JSON.parse(localStorage.getItem('prog_'+id))||{};}catch(e){return {};}}
+  function salvarProg(id,p){try{localStorage.setItem('prog_'+id,JSON.stringify(p));}catch(e){}}
+
+  lista.innerHTML=MODULOS.map(function(m){
+    return '<a class="modulo'+(m.breve?' breve':'')+'" href="#'+m.id+'"><span class="n">'+m.n+'</span><span class="t">'+esc(m.t)+'</span><span class="m">'+(m.aulas.length?m.aulas.length+' aulas':'Em breve')+'</span></a>';
+  }).join('');
+
+  function abrir(id){
+    var m=MODULOS.filter(function(x){return x.id===id;})[0];
+    if(!m||!m.aulas.length){home.hidden=false;mod.hidden=true;voltar.hidden=true;return;}
+    home.hidden=true;mod.hidden=false;voltar.hidden=false;
+    document.getElementById('mod-numero').textContent='Módulo '+m.n;
+    document.getElementById('mod-titulo').textContent=m.t;
+    document.getElementById('mod-descricao').textContent=m.d;
+    var prog=lerProg(m.id);
+    var aulas=document.getElementById('mod-aulas');
+    aulas.innerHTML=m.aulas.map(function(a,i){
+      var feita=!!prog[i];
+      return '<article class="aula"><div><h3>'+esc(a.t)+'</h3><span class="meta">'+esc(a.dur)+'</span></div>'+
+        '<div class="video"><iframe src="https://www.youtube.com/embed/'+esc(a.yt)+'?rel=0&modestbranding=1" title="'+esc(a.t)+'" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>'+
+        '<button type="button" class="'+(feita?'feito':'')+'" data-i="'+i+'">'+(feita?'✓ Aula concluída':'Marcar como concluída')+'</button></article>';
+    }).join('');
+    atualizar(m,prog);
+  }
+  function atualizar(m,prog){
+    var n=0;m.aulas.forEach(function(a,i){if(prog[i])n++;});
+    var p=Math.round(n/m.aulas.length*100);
+    document.getElementById('mod-pct').textContent=p+'%';
+    document.getElementById('mod-barra').style.width=p+'%';
+  }
+  document.getElementById('mod-aulas').addEventListener('click',function(e){
+    var b=e.target.closest('button[data-i]');if(!b)return;
+    var id=location.hash.slice(1),m=MODULOS.filter(function(x){return x.id===id;})[0];
+    var prog=lerProg(id),i=+b.getAttribute('data-i');
+    if(prog[i])delete prog[i];else prog[i]=1;
+    salvarProg(id,prog);abrir(id);
+  });
+  function rota(){var id=location.hash.slice(1);if(!id){home.hidden=false;mod.hidden=true;voltar.hidden=true;return;}abrir(id);}
+  window.addEventListener('hashchange',rota);rota();
+})();
+</script>
+</body>
+</html>
